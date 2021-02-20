@@ -25,7 +25,7 @@ proc cross *(p1, p2: Point): Point =
         z: p1.x * p2.y - p1.y * p2.x
     )
 
-proc rotx *(p: Point, f: float): Point =
+proc rotx *(p: Point, f: PointFloat): Point =
     let
         c = cos(f)
         s = sin(f)
@@ -35,7 +35,7 @@ proc rotx *(p: Point, f: float): Point =
         z: s * p.y + c * p.z
     )
 
-proc roty *(p: Point, f: float): Point =
+proc roty *(p: Point, f: PointFloat): Point =
     let
         c = cos(f)
         s = sin(f)
@@ -45,7 +45,7 @@ proc roty *(p: Point, f: float): Point =
         z: c * p.z - s * p.x
     )
 
-proc rotz *(p: Point, f: float): Point =
+proc rotz *(p: Point, f: PointFloat): Point =
     let
         c = cos(f)
         s = sin(f)
@@ -97,7 +97,7 @@ proc normal *(f: Face): Point =
 
 proc intersectsFace *(r: Ray, f: Face): Option[Point] =
     let 
-        n = f.normal.normalize
+        n = f.normal
         d = n.dot(f.p1)
 
     # make sure we aren't inside plane
